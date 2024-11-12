@@ -59,7 +59,14 @@ const resetGame = () => {
       />
     </div>
     <form @submit.prevent="playGame">
-      <div style="text-align: center">
+      <div
+        style="
+          text-align: center;
+          border-radius: 5px;
+          box-shadow: 0 8px 16px 0 #35495e;
+          padding: 10px;
+        "
+      >
         <h1>Let's Play Rock, Paper, Scissors</h1>
         <label for="user_input">What do you choose?</label>
         <div>
