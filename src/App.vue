@@ -58,30 +58,31 @@ const resetGame = () => {
       <img
         alt="Vue logo"
         class="logo"
-        src="./assets/logo.svg"
-        width="75"
-        height="75"
+        src="./assets/rock-paper-scissors.png"
+        width="100"
+        height="100"
         style="text-align: center"
       />
+      <h1>Rock, Paper, Scissors</h1>
     </div>
     <form @submit.prevent="playGame">
       <div
         style="
           text-align: center;
           border-radius: 5px;
-          box-shadow: 0 8px 16px 0 #35495e;
+          box-shadow: 0 8px 16px 0 #1e198c;
           padding: 10px;
         "
       >
-        <h1>Let's Play Rock, Paper, Scissors</h1>
         <label for="user_input">What do you choose?</label>
         <div>
           <label for="rock">
             <input type="radio" id="rock" value="1" v-model="userChoice" />
             <img
               src="./assets/rock.png"
-              style="height: 75px"
+              style="height: 75px; padding-top: 25px"
               alt="Rock"
+              class="choice"
               :class="userChoice == 1 ? 'selected' : ''"
             />
           </label>
@@ -91,6 +92,7 @@ const resetGame = () => {
               src="./assets/paper.png"
               style="height: 75px"
               alt="Paper"
+              class="choice"
               :class="userChoice == 2 ? 'selected' : ''"
             />
           </label>
@@ -100,6 +102,7 @@ const resetGame = () => {
               src="./assets/scissors.png"
               style="height: 75px"
               alt="Scissors"
+              class="choice"
               :class="userChoice == 3 ? 'selected' : ''"
             />
           </label>
@@ -152,8 +155,8 @@ img {
   border-radius: 5px;
 }
 img.selected,
-img:hover {
-  background-color: #42b883;
+img.choice:hover {
+  background-color: #f56c42;
 }
 button,
 input[type='submit'] {
@@ -165,15 +168,15 @@ input[type='submit'] {
   margin: 10px;
   font-size: 15px;
   cursor: pointer;
-  background-color: #35495e;
+  background-color: #1e198c;
 }
 button:hover,
 input[type='submit']:hover {
-  background-color: #42b883;
+  background-color: #f56c42;
 }
 
 .dark {
-  color: #35495e;
+  color: #1e198c;
   font-weight: bold;
 }
 
@@ -188,9 +191,9 @@ input[type='submit']:hover {
   padding: 10px;
   margin: 5px;
   vertical-align: middle;
-  background-color: #42b883;
+  background-color: #f56c42;
   border-radius: 5px;
-  box-shadow: 0 8px 16px 0 #35495e;
+  box-shadow: 0 8px 16px 0 #1e198c;
   font-size: 15px;
 }
 </style>
