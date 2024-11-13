@@ -80,7 +80,7 @@ const resetGame = () => {
             <input type="radio" id="rock" value="1" v-model="userChoice" />
             <img
               src="./assets/rock.png"
-              style="height: 100px"
+              style="height: 75px"
               alt="Rock"
               :class="userChoice == 1 ? 'selected' : ''"
             />
@@ -89,7 +89,7 @@ const resetGame = () => {
             <input type="radio" id="paper" value="2" v-model="userChoice" />
             <img
               src="./assets/paper.png"
-              style="height: 100px"
+              style="height: 75px"
               alt="Paper"
               :class="userChoice == 2 ? 'selected' : ''"
             />
@@ -98,7 +98,7 @@ const resetGame = () => {
             <input type="radio" id="shears" value="3" v-model="userChoice" />
             <img
               src="./assets/scissors.png"
-              style="height: 100px"
+              style="height: 75px"
               alt="Scissors"
               :class="userChoice == 3 ? 'selected' : ''"
             />
@@ -159,7 +159,7 @@ button,
 input[type='submit'] {
   color: white;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   margin: 10px;
@@ -178,15 +178,15 @@ input[type='submit']:hover {
 }
 
 .parent {
-  margin: 10px;
-  padding: 20px;
+  margin: 5px;
+  padding: 10px;
   text-align: center;
   color: white;
 }
 .child {
   display: inline-block;
   padding: 10px;
-  margin: 10px;
+  margin: 5px;
   vertical-align: middle;
   background-color: #42b883;
   border-radius: 5px;
