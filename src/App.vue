@@ -11,13 +11,17 @@ const score = reactive({
   user: 0,
   computer: 0,
 })
+const gameTotal = ref(0)
+const drawScore = ref(0)
 
 const playGame = () => {
   gameHasBegun.value = true
+  gameTotal.value++
   userPlayed.value = choiceMap[userChoice.value - 1]
   computerChoice.value = getRndInteger(1, 3)
   if (userChoice.value == computerChoice.value) {
     winner.value = 'none'
+    drawScore.value++
   } else if (
     (userChoice.value == 1 && computerChoice.value == 3) ||
     (userChoice.value == 2 && computerChoice.value == 1) ||
@@ -43,6 +47,8 @@ const resetGame = () => {
   userChoice.value = 0
   computerChoice.value = 0
   winner.value = ''
+  gameTotal.value = 0
+  drawScore.value = 0
 }
 </script>
 
@@ -72,15 +78,30 @@ const resetGame = () => {
         <div>
           <label for="rock">
             <input type="radio" id="rock" value="1" v-model="userChoice" />
-            <img src="./assets/rock.png" style="height: 100px" alt="Rock" />
+            <img
+              src="./assets/rock.png"
+              style="height: 100px"
+              alt="Rock"
+              :class="userChoice == 1 ? 'selected' : ''"
+            />
           </label>
           <label for="paper">
             <input type="radio" id="paper" value="2" v-model="userChoice" />
-            <img src="./assets/paper.png" style="height: 100px" alt="Paper" />
+            <img
+              src="./assets/paper.png"
+              style="height: 100px"
+              alt="Paper"
+              :class="userChoice == 2 ? 'selected' : ''"
+            />
           </label>
           <label for="shears">
             <input type="radio" id="shears" value="3" v-model="userChoice" />
-            <img src="./assets/scissors.png" style="height: 100px" alt="Scissors" />
+            <img
+              src="./assets/scissors.png"
+              style="height: 100px"
+              alt="Scissors"
+              :class="userChoice == 3 ? 'selected' : ''"
+            />
           </label>
         </div>
         <br />
@@ -89,13 +110,19 @@ const resetGame = () => {
       </div>
     </form>
     <div v-if="gameHasBegun" style="text-align: center; padding-top: 20px">
-      <div v-if="winner == 'user'"><h1>You WIN!!</h1></div>
-      <div v-else-if="winner == 'computer'"><h1>You LOSE!!</h1></div>
-      <div v-else><h1>It's a DRAW!!</h1></div>
-
+      <div v-if="winner == 'user'">
+        <h1>Game {{ gameTotal }}: You WIN!!</h1>
+      </div>
+      <div v-else-if="winner == 'computer'">
+        <h1>Game {{ gameTotal }}: You LOSE!!</h1>
+      </div>
+      <div v-else>
+        <h1>Game {{ gameTotal }}: It's a DRAW!!</h1>
+      </div>
+      <div v-if="drawScore > 0">Game Count (Draw): {{ drawScore }}</div>
       <div class="parent">
         <div class="child">
-          <p class="dark">User</p>
+          <p class="dark">You</p>
           <p>
             Choice: <span class="dark">{{ userPlayed }}</span>
           </p>
@@ -119,12 +146,14 @@ const resetGame = () => {
 
 <style scoped>
 input[type='radio'] {
-  /* visibility: hidden; */
+  visibility: hidden;
 }
-input[type='radio']:checked {
-  /* visibility: hidden; */
-  border: 2 px solid #35495e;
+img {
   border-radius: 5px;
+}
+img.selected,
+img:hover {
+  background-color: #42b883;
 }
 button,
 input[type='submit'] {
